@@ -5,11 +5,12 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#802BD6',
+          DEFAULT: '#7462F4 ',
+          100: '#C8B7D5',
           900: '#2e2762'
         },
         secondary: {
-          DEFAULT: '#7462F4'
+          DEFAULT: '#802BD6'
         },
         success: {
           DEFAULT: '#12b669'
@@ -17,7 +18,12 @@ export default {
         error: {
           DEFAULT: '#f04437'
         },
+        alert: { DEFAULT: '#fcb900' },
+        warning: {
+          DEFAULT: '#ff6900'
+        },
         neutrals: {
+          DEFAULT: '#81808c',
           100: '#efeff1',
           200: '#e0dfe2',
           300: '#c0bfc5',
