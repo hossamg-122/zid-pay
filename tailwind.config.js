@@ -10,6 +10,7 @@ export default {
         primary: {
           DEFAULT: '#7462F4 ',
           100: '#C8B7D5',
+          200: '#e3e0fd',
           900: '#2e2762'
         },
         secondary: {
@@ -44,6 +45,9 @@ export default {
         black: {
           DEFAULT: '#000000'
         }
+      },
+      boxShadow: {
+        input: '0 0 0 4px rgb(227 224 253)'
       }
     }
   },

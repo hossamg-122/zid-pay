@@ -15,7 +15,12 @@
     "jsx": "preserve",
     "importHelpers": true,
     "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "types": ["node"]
+    "strict": true,
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "types": ["node", "vite/client"]
   }
 }
