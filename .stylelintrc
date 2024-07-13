@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-recommended-vue",
+    "stylelint-config-standard-scss",
+    "stylelint-config-recommended-vue/scss"
+  ],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["tailwind"]
+      }
+    ],
+    "declaration-block-trailing-semicolon": null,
+    "no-descending-specificity": null
+  },
+  "overrides": [
+    {
+      "files": ["**/*.{css,scss,vue}"],
+      "rules": {
+        "selector-class-pattern": null,
+        "rule-empty-line-before": null,
+        "unit-allowed-list": ["rem", "px", "%", "s", "deg"]
+      }
+    }
+  ]
+}
