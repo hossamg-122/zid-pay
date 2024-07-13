@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, getCurrentInstance } from 'vue'
 import { Type } from 'typescript'
+
 import ZIcon from './ZIcon.vue'
 import ZLoader from './ZLoader.vue'
 import { paths } from '@/zIcons'
