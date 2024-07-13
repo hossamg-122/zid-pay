@@ -70,8 +70,8 @@
     }
   },
   "lint-staged": {
-    "*.{ts,js,vue}": "yarn lint --fix",
-    "*.{css,scss,vue}": "yarn lint:style --fix",
-    "*": "yarn format"
+    "*.{ts,js,vue}": "npm run lint --fix",
+    "*.{css,scss,vue}": "npm run lint:style --fix",
+    "*": "npm run format"
   }
 }
