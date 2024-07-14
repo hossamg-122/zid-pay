@@ -46,7 +46,6 @@ const localValue = computed({
 })
 const hasError = computed(() => props.errors?.length > 0)
 const isDirty = computed(() => isFocused.value || Boolean(localValue.value))
-console.log(isDirty)
 </script>
 <template>
   <div>
@@ -61,7 +60,7 @@ console.log(isDirty)
       />
       <label
         :for="label"
-        class="absolute ease-in-out transition-all duration-250 text-xs sm:text-lg"
+        class="absolute ease-in-out transition-all duration-250 text-xs sm:text-base"
         :class="{
           '-top-3 bg-white px-1 ml-3 text-sm': isDirty,
           'p-3': !isDirty,
@@ -86,7 +85,7 @@ console.log(isDirty)
         class="rounded w-full p-4 border placeholder:uppercase text-sm placeholder:leading-[30px] placeholder:text-grey-100 outline-none focus:border-primary-100 focus:shadow-input"
         :class="{
           'border-error': hasError,
-          'border-grey-100': !hasError,
+          'border-neutrals-100': !hasError,
           'cursor-not-allowed': disabled,
           'ps-7': preIcon,
           'pe-7': appendIcon
@@ -104,7 +103,7 @@ console.log(isDirty)
       />
     </div>
 
-    <div v-if="gutterBottom" class="h-3 pt-1">
+    <div v-if="gutterBottom" class="h-8 pt-1">
       <div v-if="hasError" data-aos="fade-right" class="flex items-center">
         <z-icon size="10" viewBox="0 0 10 10" class="text-error me-2" name="error" />
         <p class="text-error text-xs">{{ errors[0].$message || errors[0] }}</p>
