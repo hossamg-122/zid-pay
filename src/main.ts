@@ -1,11 +1,13 @@
-import './assets/main.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import Vue3Toasity, { type ToastContainerOptions } from 'vue3-toastify'
+import 'vue3-toastify/dist/index.css'
 import i18n from './i18n'
 import App from './App.vue'
 import router from './router'
+import './assets/main.css'
 
 AOS.init({
   // Global settings:
@@ -33,5 +35,11 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 app.use(i18n())
-
+app.use(Vue3Toasity, {
+  autoClose: 3000,
+  style: {
+    width: 'fit-content'
+  }
+  // ...
+} as ToastContainerOptions)
 app.mount('#app')
