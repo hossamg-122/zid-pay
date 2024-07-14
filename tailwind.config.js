@@ -28,6 +28,7 @@ export default {
         },
         neutrals: {
           DEFAULT: '#81808c',
+          50: '#f7f7f8',
           100: '#efeff1',
           200: '#e0dfe2',
           300: '#c0bfc5',
