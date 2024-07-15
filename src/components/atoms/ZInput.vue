@@ -45,7 +45,9 @@ const localValue = computed({
   }
 })
 const hasError = computed(() => props.errors?.length > 0)
-const isDirty = computed(() => isFocused.value || Boolean(localValue.value))
+const isDirty = computed(() =>
+  props.type === 'date' ? true : isFocused.value || Boolean(localValue.value)
+)
 </script>
 <template>
   <div>
