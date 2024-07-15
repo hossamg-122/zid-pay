@@ -5,5 +5,15 @@
   },
   "title": {
     "config": "Configuration"
+  },
+  "login": {
+    "title": "Login",
+    "form": {
+      "email": "Email",
+      "password": "Password",
+      "button": "Login"
+    },
+    "signUp": "sign up",
+    "dontHaveAccount": "Don't you have an account?"
   }
 }
