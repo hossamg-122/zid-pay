@@ -4,7 +4,7 @@ import { toast } from 'vue3-toastify'
 
 export const useApi = (isAuth = true, handleErrors = true) => {
   const instance = axios.create({
-    baseURL: `${import.meta.env.VITE_VUE_APP_Z_BASE_URL}`,
+    baseURL: `${isAuth ? import.meta.env.VITE_VUE_APP_Z_DB_URL : import.meta.env.VITE_VUE_APP_Z_AUTH_URL}`,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
