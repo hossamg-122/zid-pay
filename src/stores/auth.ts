@@ -2,35 +2,47 @@
 
 import { defineStore } from 'pinia'
 
-interface IUser {
-  name?: string
-  email?: string
+export interface IUser {
+  email: string
+  name: string
+  birthDate: string
+  gender: string
+  idToken: string
+  localId: string
 }
 
 interface IAuthState {
   user: IUser
-  token: string
+  idToken: string
 }
-
+const defaultUserData: IUser = {
+  email: '',
+  name: '',
+  birthDate: '',
+  gender: '',
+  idToken: '',
+  localId: ''
+}
 export const useAuthStore = defineStore('auth', {
   state: (): IAuthState => ({
-    user: {},
-    token: ''
+    user: defaultUserData,
+    idToken: ''
   }),
   getters: {
     getUser: (state): IUser => state.user || localStorage.getItem('z-user'),
-    getToken: (state): string | null => state.token || localStorage.getItem('z-token'),
+    getToken: (state): string | null => state.idToken || localStorage.getItem('z-idToken'),
     isLoggedIn: (state): boolean =>
-      state.token?.length > 0 || (localStorage.getItem('z-token')?.length ?? 0) > 0
+      state.idToken?.length > 0 || (localStorage.getItem('z-idToken')?.length ?? 0) > 0
   },
   actions: {
-    loginUser({ data, token }: { data: IUser; token: string }, storeToken = true): Promise<void> {
+    loginUser(data: IUser, storeToken = true): Promise<void> {
       return new Promise((resolve) => {
+        console.log(' auth', data)
         if (storeToken) {
-          localStorage.setItem('z-token', token)
+          localStorage.setItem('z-idToken', data.idToken)
           localStorage.setItem('z-user', JSON.stringify(data))
           this.user = data
-          this.token = token
+          this.idToken = data.idToken
         }
         resolve()
       })
@@ -40,9 +52,9 @@ export const useAuthStore = defineStore('auth', {
     logoutUser(): Promise<void> {
       return new Promise((resolve) => {
         localStorage.removeItem('z-user')
-        localStorage.removeItem('z-token')
-        this.user = {}
-        this.token = ''
+        localStorage.removeItem('z-idToken')
+        this.user = defaultUserData
+        this.idToken = ''
         resolve()
       })
     }

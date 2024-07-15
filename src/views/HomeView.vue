@@ -5,5 +5,6 @@ import { AuthLayout } from '@/layouts'
 <template>
   <main>
     <AuthLayout />
+    Account Details
   </main>
 </template>

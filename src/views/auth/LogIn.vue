@@ -2,7 +2,7 @@
 import { reactive, computed, ref } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength } from '@vuelidate/validators'
-import { useAuthStore } from '@/stores/auth'
+import { useAuthStore, type IUser } from '@/stores/auth'
 import { toast } from 'vue3-toastify'
 import { useRouter } from 'vue-router'
 import { ZBtn, ZCard, ZInput } from '@/components'
@@ -26,7 +26,6 @@ const { t } = useI18n()
 const fields = computed(() => [
   {
     key: 'email',
-    input: 'TsInput',
     bindOptions: {
       label: t('login.form.email'),
       type: 'email'
@@ -34,7 +33,6 @@ const fields = computed(() => [
   },
   {
     key: 'password',
-    input: 'TsInput',
     bindOptions: {
       label: t('login.form.password'),
       type: 'password'
@@ -57,11 +55,32 @@ const onSubmit = async () => {
   loading.value = true
 
   try {
-    const { data } = await useApi(false, true).post('/auth/login', form)
-    toast.success('You have been logged in successfully')
+    const {
+      data: { localId, idToken }
+    } = await useApi(false, true).post(
+      `/accounts:signInWithPassword?key=${import.meta.env.VITE_VUE_APP_Z_API_KEY}`,
+      form
+    )
 
-    await authStore.loginUser(data)
-    router.push('/search')
+    // get user data
+    const {
+      data: { email, name, birthDate, gender }
+    } = await useApi(true, true).get(`/users/${localId}.json?auth=${idToken}`)
+
+    const userDate: IUser = {
+      email,
+      name,
+      birthDate,
+      gender,
+      idToken,
+      localId
+    }
+    toast.success(t('login.loggedInMessage'))
+
+    await authStore.loginUser(userDate)
+    setTimeout(() => {
+      router.push('/account-details')
+    }, 1500)
   } catch (error) {
     if (error.response?.data?.message) {
       toast.error(error.response?.data?.message)
