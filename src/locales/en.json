@@ -14,6 +14,23 @@
       "button": "Login"
     },
     "signUp": "sign up",
-    "dontHaveAccount": "Don't you have an account?"
+    "dontHaveAccount": "Don't you have an account?",
+    "loggedInMessage": "You have been logged in successfully"
+  },
+  "signUp": {
+    "title": "Sign up",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "dob": "Date of Birth",
+      "male": "Male",
+      "female": "Female",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "button": "Sign up"
+    },
+    "logIn": "Login",
+    "alreadyHaveAccount": "Already have an account?",
+    "accountCreated": "Your account created successfully"
   }
 }
