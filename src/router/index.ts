@@ -1,14 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import { useAuthStore } from '@/stores/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/account-details',
+      path: '/account',
       name: 'account',
-      component: HomeView,
+      component: () => import('@/views/AccountView.vue'),
+      meta: {
+        authRequired: true
+      }
+    },
+    {
+      path: '/payment',
+      name: 'payment',
+      component: () => import('@/views/PaymentView.vue'),
       meta: {
         authRequired: true
       }

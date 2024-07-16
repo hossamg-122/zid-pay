@@ -32,5 +32,9 @@
     "logIn": "Login",
     "alreadyHaveAccount": "Already have an account?",
     "accountCreated": "Your account created successfully"
+  },
+  "sideBar": {
+    "account": "Account",
+    "payment": "Payment"
   }
 }

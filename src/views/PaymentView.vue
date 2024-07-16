@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { AuthLayout } from '@/layouts'
+import { MainLayout } from '@/layouts'
 </script>
 
 <template>
   <main>
-    <AuthLayout />
-    Account Details
+    <MainLayout>payment</MainLayout>
   </main>
 </template>
