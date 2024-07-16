@@ -129,7 +129,7 @@ const onSubmit = async () => {
 
     toast.success(t('account.dataUpdated'))
 
-    await authStore.updateUser(data as IUser)
+    await authStore.storeUser(data as IUser)
   } catch (error: any) {
     if (error.response?.data?.error?.message) {
       toast.error(error.response.data.error.message)

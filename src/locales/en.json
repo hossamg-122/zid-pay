@@ -35,7 +35,8 @@
   },
   "sideBar": {
     "account": "Account",
-    "payment": "Payment"
+    "payment": "Payment",
+    "logout": "Logout"
   },
   "account": {
     "title": "Account",

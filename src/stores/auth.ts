@@ -12,38 +12,42 @@ export interface IUser {
 }
 
 interface IAuthState {
-  user: IUser
+  user: IUser | null
   idToken: string
 }
-const defaultUserData: IUser = {
-  email: '',
-  name: '',
-  birthDate: '',
-  gender: '',
-  idToken: '',
-  localId: ''
-}
+
 export const useAuthStore = defineStore('auth', {
   state: (): IAuthState => ({
-    user: defaultUserData,
+    user: null,
     idToken: ''
   }),
   getters: {
-    getUser: (state): IUser => state.user || localStorage.getItem('z-user'),
+    getUser: (state): IUser | null => {
+      if (state.user?.localId) return state.user
+      const userData = localStorage.getItem('z-user')
+      return userData ? (JSON.parse(userData) as IUser) : null
+    },
     getToken: (state): string | null => state.idToken || localStorage.getItem('z-idToken'),
     isLoggedIn: (state): boolean =>
       state.idToken?.length > 0 || (localStorage.getItem('z-idToken')?.length ?? 0) > 0
   },
   actions: {
-    loginUser(data: IUser, storeToken = true): Promise<void> {
+    storeUser(data: IUser, storeToken = false): Promise<void> {
       return new Promise((resolve) => {
-        console.log(' auth', data)
+        localStorage.setItem('z-user', JSON.stringify(data))
+        this.user = data
         if (storeToken) {
-          localStorage.setItem('z-idToken', data.idToken)
-          localStorage.setItem('z-user', JSON.stringify(data))
-          this.user = data
-          this.idToken = data.idToken
+          this.storeToken(data.idToken).then(() => resolve())
         }
+        resolve()
+      })
+    },
+    storeToken(idToken: string): Promise<void> {
+      return new Promise((resolve) => {
+        localStorage.setItem('z-idToken', idToken)
+
+        this.idToken = idToken
+
         resolve()
       })
     },
@@ -53,8 +57,9 @@ export const useAuthStore = defineStore('auth', {
       return new Promise((resolve) => {
         localStorage.removeItem('z-user')
         localStorage.removeItem('z-idToken')
-        this.user = defaultUserData
+        this.user = null
         this.idToken = ''
+        window.location.href = '/login'
         resolve()
       })
     }
