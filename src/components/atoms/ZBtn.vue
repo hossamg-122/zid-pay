@@ -7,7 +7,7 @@ import { paths } from '@/zIcons'
 interface IButton {
   label?: string
   variant?: 'contained' | 'outlined' | 'text'
-  color?: 'primary' | 'secondary' | 'white' | 'alert' | 'warning' | 'success' | 'error'
+  color?: 'primary' | 'secondary' | 'white' | 'alert' | 'warning' | 'success' | 'error' | 'neutrals'
   compact?: boolean
   to?: string | object
   replace?: boolean
