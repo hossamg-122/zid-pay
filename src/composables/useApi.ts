@@ -7,8 +7,10 @@ export const useApi = (isAuth = true, handleErrors = true) => {
     baseURL: `${isAuth ? import.meta.env.VITE_VUE_APP_Z_DB_URL : import.meta.env.VITE_VUE_APP_Z_AUTH_URL}`,
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/json',
-      ...(isAuth ? { authorization: `Bearer ${useAuthStore().getToken}` } : {})
+      Accept: 'application/json'
+    },
+    params: {
+      ...(isAuth ? { auth: `${useAuthStore().getToken}` } : {})
     }
   })
 
