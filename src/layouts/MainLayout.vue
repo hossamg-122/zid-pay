@@ -39,7 +39,7 @@
     </nav>
   </aside>
 
-  <main class="p-10 sm:ml-64">
+  <main class="p-10 sm:ml-64 overflow-hidden">
     <slot />
   </main>
 </template>
