@@ -14,7 +14,7 @@
   <aside
     id="default-sidebar"
     ref="sideBar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-primary"
+    class="fixed top-0 left-0 z-40 w-64 h-screen flex flex-col transition-transform -translate-x-full sm:translate-x-0 bg-primary"
     aria-label="Sidebar"
     :class="{
       'translate-x-0': showMobileMenu
@@ -23,7 +23,7 @@
     <div class="p-4">
       <img class="h-20 flex items-center justify-center" src="@/assets/images/zid-logo.webp" />
     </div>
-    <nav class="h-full px-3 py-4 overflow-y-auto">
+    <nav class="grow px-3 py-4 overflow-y-auto flex flex-col">
       <ul class="space-y-2 font-medium text-white">
         <li v-for="{ title, icon, route } in navLinks" :key="title">
           <router-link
@@ -36,18 +36,28 @@
           </router-link>
         </li>
       </ul>
+      <ZBtn
+        class="mt-auto"
+        color="error"
+        block
+        prepend-icon="logout"
+        :loading="isLoading"
+        :label="t('sideBar.logout')"
+        @click="handleLogout"
+      />
     </nav>
   </aside>
 
-  <main class="p-10 sm:ml-64">
+  <main class="p-10 sm:ml-64 overflow-hidden">
     <slot />
   </main>
 </template>
 <script setup lang="ts">
-import { ZIcon } from '@/components'
-import type { paths } from '@/zIcons'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useAuthStore } from '@/stores/auth'
+import { ZBtn, ZIcon } from '@/components'
+import type { paths } from '@/zIcons'
 
 interface INavLinks {
   title: string
@@ -55,11 +65,11 @@ interface INavLinks {
   route: string
 }
 const { t } = useI18n()
-
+const authStore = useAuthStore()
 const sideBar = ref(null)
 const menuBtn = ref(null)
 const showMobileMenu = ref(false)
-
+const isLoading = ref(false)
 const navLinks: INavLinks[] = [
   {
     title: t('sideBar.account'),
@@ -82,6 +92,13 @@ const handleClickOutside = (event: MouseEvent) => {
   ) {
     showMobileMenu.value = false
   }
+}
+
+const handleLogout = () => {
+  isLoading.value = true
+  setTimeout(async () => {
+    await authStore.logoutUser()
+  }, 1500)
 }
 
 onMounted(() => {

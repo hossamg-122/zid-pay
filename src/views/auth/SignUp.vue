@@ -135,9 +135,11 @@ const onSubmit = async () => {
       `/accounts:signUp?key=${import.meta.env.VITE_VUE_APP_Z_API_KEY}`,
       { email, password, returnSecureToken: true }
     )
+    await authStore.storeToken(idToken)
+
     // update the created account with user data
     await useApi(true, true).patch(
-      `/users/${localId}.json?auth=${idToken}`,
+      `/users/${localId}.json`,
 
       { email, name, birthDate, gender }
     )
@@ -151,11 +153,11 @@ const onSubmit = async () => {
       idToken,
       localId
     }
-    await authStore.loginUser(userDate)
+    await authStore.storeUser(userDate)
     setTimeout(() => {
-      router.push('/account-details')
+      router.push('/account')
     }, 1500)
-  } catch (error) {
+  } catch (error: any) {
     if (error.response?.data?.error?.message) {
       toast.error(error.response.data.error.message)
     }

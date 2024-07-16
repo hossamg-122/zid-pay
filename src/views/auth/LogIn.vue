@@ -77,11 +77,11 @@ const onSubmit = async () => {
     }
     toast.success(t('login.loggedInMessage'))
 
-    await authStore.loginUser(userDate)
+    await authStore.storeUser(userDate, true)
     setTimeout(() => {
-      router.push('/account-details')
+      router.push('/account')
     }, 1500)
-  } catch (error) {
+  } catch (error: any) {
     if (error.response?.data?.message) {
       toast.error(error.response?.data?.message)
     }
