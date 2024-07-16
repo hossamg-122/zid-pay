@@ -36,5 +36,12 @@
   "sideBar": {
     "account": "Account",
     "payment": "Payment"
+  },
+  "account": {
+    "title": "Account",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "dataUpdated": "Your data has been updated successfully"
   }
 }
