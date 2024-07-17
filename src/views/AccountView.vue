@@ -16,6 +16,7 @@ interface IForm {
   birthDate: string
   gender: string
 }
+
 const authStore = useAuthStore()
 const router = useRouter()
 const user = authStore.getUser
@@ -119,7 +120,7 @@ const v$ = useVuelidate(rules, { form })
 const onSubmit = async () => {
   responseErrors.value = {}
   v$.value.$touch()
-  console.log(v$)
+
   if (v$.value.$invalid) return
   loading.value = true
 
@@ -143,8 +144,6 @@ const onSubmit = async () => {
 }
 
 const handleCancel = () => {
-  console.log('originalData', originalData)
-  console.log('form', form)
   isEditable.value = false
   form = { ...originalData } as IForm
 }
