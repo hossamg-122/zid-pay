@@ -20,6 +20,11 @@ Zid Pay is a web application that allows users to sign up, manage their accounts
 - Styling: TailwindCSS is used for styling, matching the company's website design.
 - localization: I18n for localization.
 
+### Testing Card Numbers
+
+- Visa: 4242 4242 4242 4242
+- MasterCard: 5555 5008 3003 0331
+
 ### Demo Video
 
 [![Watch the video](./screenshots/Screenshot%202024-07-17%20at%201.52.50 PM.png)](https://www.loom.com/share/29e6c5b9bd92487facb2dc772c58e6da?sid=1bf6167d-7d60-4315-8204-6880d261c606)
