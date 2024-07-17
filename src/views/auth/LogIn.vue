@@ -83,8 +83,8 @@ const onSubmit = async () => {
     }, 1500)
   } catch (error: any) {
     if (error.response?.data?.message) {
-      toast.error(error.response?.data?.message)
-    }
+      toast.error(error.response.data.message)
+    } else if (error.response?.data?.error?.message) toast.error(error.response.data.error.message)
 
     Object.assign(responseErrors, error.response?.data?.errors ?? {})
   } finally {
