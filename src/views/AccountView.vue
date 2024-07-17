@@ -123,14 +123,17 @@ const onSubmit = async () => {
 
   if (v$.value.$invalid) return
   loading.value = true
-
+  if (!user) {
+    router.push('./login')
+    return
+  }
   try {
     // update the created account with user data
-    const { data } = await useApi(true, true).patch(`/users/${user?.localId}.json`, form)
+    const { data } = await useApi(true, true).patch(`/users/${user.localId}.json`, form)
 
     toast.success(t('account.dataUpdated'))
 
-    await authStore.storeUser(data as IUser)
+    await authStore.storeUser({ ...data, localId: user.localId } as IUser)
   } catch (error: any) {
     if (error.response?.data?.error?.message) {
       toast.error(error.response.data.error.message)
