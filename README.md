@@ -18,6 +18,7 @@ Zid Pay is a web application that allows users to sign up, manage their accounts
 - UI Design: Atomic design principles are applied to build reusable UI components.
 - Form Validation: Vuelidate is used for form validation.
 - Styling: TailwindCSS is used for styling, matching the company's website design.
+- localization: I18n for localization.
 
 ### Demo Video
 
