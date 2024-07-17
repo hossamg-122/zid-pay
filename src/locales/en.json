@@ -44,5 +44,12 @@
     "save": "Save",
     "cancel": "Cancel",
     "dataUpdated": "Your data has been updated successfully"
+  },
+  "payment": {
+    "title": "Payment",
+
+    "save": "Save",
+    "noMethods": "Cancel",
+    "addCard": "Add Card"
   }
 }
