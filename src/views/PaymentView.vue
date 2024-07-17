@@ -51,7 +51,9 @@ const fetchPaymentMethods = async () => {
   isPageReady.value = false
   try {
     const { data } = await useApi().get(`/payment-methods/${authStore.getUser?.localId}.json`)
-    const modifiedData = Object.keys(data).map((id) => ({ referenceId: id, ...data[id] }))
+    const modifiedData = data
+      ? Object.keys(data).map((id) => ({ referenceId: id, ...data[id] }))
+      : data
     paymentMethods.value = modifiedData
     isPageReady.value = true
   } catch (error: any) {

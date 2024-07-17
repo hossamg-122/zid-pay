@@ -49,7 +49,7 @@
     "title": "Payment",
 
     "save": "Save",
-    "noMethods": "Cancel",
+    "noMethods": "You don't have any methods added yet",
     "addCard": "Add Card"
   }
 }
